@@ -1,6 +1,7 @@
 # system files
 .DS_Store
 .Rhistory
+.Rproj.user
 
 # images and html
 *.png

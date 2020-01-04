@@ -1,0 +1,14 @@
+Package: filenamer
+Title: Functions for Renaming .fcs Files in Bulk
+Version: 0.0.0.9000
+Authors@R:
+  person(given = "Eszter",
+         family = "Csibra",
+         role = c("aut", "cre"),
+         email = "ec3630@gmail.com",
+         comment = c(ORCID = "0000-0003-4759-5921"))
+Description: This package contains functions that automate large scale filename renaming tasks. They were developed for use with large sets of .fcs files produced from multiwell flow cytometry plate experiments, in order to simplify downstream data processing and analysis.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1

@@ -1,0 +1,13 @@
+# system files
+.DS_Store
+.Rhistory
+
+# images and html
+*.png
+*.svg
+*.pdf
+*.tiff
+
+# folders with archived or test files
+z_*/
+*alias/

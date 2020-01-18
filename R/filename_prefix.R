@@ -1,14 +1,18 @@
 #' filename_prefix
 #'
 #' Removes prefixes of specified size in filenames.
-#' @param files List of files. Defaults to files.
+#'
+#' @param filepath Path to files. Defaults to current directory.
 #' @param prefix_n Length of prefix, measured in parts after splitting by "_". Defaults to 3.
 #' @export
 #' @examples
-#' files <- list.files(path = ".")
-#' filename_prefix(files=files, prefix_n = 4)
+#' folder <- "FCS_trimmed"
+#' filename_prefix(filepath = folder, prefix_n = 4)
 
-filename_prefix <- function(files = files, prefix_n = 3){
+filename_prefix <- function(filepath = ".", prefix_n = 3){
+
+  files <- list.files(path = filepath, pattern = utils::glob2rx("*.fcs"),
+                      full.names = T, recursive = F, include.dirs = F)
 
   for ( file in files ) {
 
@@ -44,7 +48,7 @@ filename_prefix <- function(files = files, prefix_n = 3){
     print(paste("New filename: ", stitch.new.filename, sep=""))
 
     ## 4. Rename
-    file.rename(from = basename(file), to = basename(stitch.new.filename))
+    file.rename(from = paste0(filepath, "/", basename(file)), to = paste0(filepath, "/", basename(stitch.new.filename)))
 
     # Spacer
     print("...")

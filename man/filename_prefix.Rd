@@ -4,10 +4,10 @@
 \alias{filename_prefix}
 \title{filename_prefix}
 \usage{
-filename_prefix(files = files, prefix_n = 3)
+filename_prefix(filepath = ".", prefix_n = 3)
 }
 \arguments{
-\item{files}{List of files. Defaults to files.}
+\item{filepath}{Path to files. Defaults to current directory.}
 
 \item{prefix_n}{Length of prefix, measured in parts after splitting by "_". Defaults to 3.}
 }
@@ -15,6 +15,6 @@ filename_prefix(files = files, prefix_n = 3)
 Removes prefixes of specified size in filenames.
 }
 \examples{
-files <- list.files(path = ".")
-filename_prefix(files=files, prefix_n = 4)
+folder <- "FCS_trimmed"
+filename_prefix(filepath = folder, prefix_n = 4)
 }

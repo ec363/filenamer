@@ -4,10 +4,10 @@
 \alias{filename_replicatenumber}
 \title{filename_replicatenumber}
 \usage{
-filename_replicatenumber(files = files)
+filename_replicatenumber(filepath = ".")
 }
 \arguments{
-\item{files}{List of files. Defaults to files.}
+\item{filepath}{Path to files. Defaults to current directory.}
 }
 \description{
 Append index to end of filename (before the filetype extension such as .fcs)
@@ -17,6 +17,6 @@ entirely on each file's position in files (1st = _1, 2nd = _2, 3rd = _3, 4th
 = _1, and so on).
 }
 \examples{
-files <- list.files(path = ".")
-filename_replicatenumber(files=files)
+folder <- "FCS_trimmed"
+filename_replicatenumber(filepath = folder)
 }

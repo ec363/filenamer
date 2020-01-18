@@ -4,11 +4,11 @@
 \alias{filename_extension}
 \title{filename_extension}
 \usage{
-filename_extension(files = files, length_with_extension = a,
+filename_extension(filepath = ".", length_with_extension = a,
   length_noextension = b)
 }
 \arguments{
-\item{files}{List of files. Defaults to files.}
+\item{filepath}{Path to files. Defaults to current directory.}
 
 \item{length_with_extension}{Number of parts to the basename of a file WITH an extension after splitting by "_". Defaults to a.}
 
@@ -22,11 +22,11 @@ identified extension/appendix part of the filename and appends it to
 following filenames identified as missing an extension/appendix. Designed for
 triplicate files in which first file of each group is comprehensively
 labelled and the others are not, but should work with any number of
-replicates, provided the object 'files' contains them in the correct order.
+replicates, provided the filepath contains them in the correct order.
 }
 \examples{
-files <- list.files(path = ".")
-a <- length( unlist(strsplit(basename(files[1]), "_")) )
-b <- length( unlist(strsplit(basename(files[2]), "_")) )
-filename_extension(files = files, length_with_extension = a, length_noextension = b)
+folder <- "FCS_trimmed"
+a <- length( unlist(strsplit(basename(list.files(folder)[1]), "_")) )
+b <- length( unlist(strsplit(basename(list.files(folder)[2]), "_")) )
+filename_extension(filepath = folder, length_with_extension = a, length_noextension = b)
 }

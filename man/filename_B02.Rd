@@ -4,10 +4,10 @@
 \alias{filename_B02}
 \title{filename_B02}
 \usage{
-filename_B02(files = files)
+filename_B02(filepath = ".")
 }
 \arguments{
-\item{files}{List of files. Defaults to files.}
+\item{filepath}{Path to files. Defaults to current directory.}
 }
 \description{
 Replaces all multiwell plate 'well' labels in the form 'B2' to the
@@ -18,6 +18,6 @@ after B10: using B02 solves this problem). Enables correct use of other
 functions, such as filename_extension and filename_replicatenumber.
 }
 \examples{
-files <- list.files(path = ".")
-filename_B02(files=files)
+folder <- "FCS_trimmed"
+filename_B02(filepath = folder)
 }

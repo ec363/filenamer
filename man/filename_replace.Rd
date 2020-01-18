@@ -4,10 +4,10 @@
 \alias{filename_replace}
 \title{filename_replace}
 \usage{
-filename_replace(files = files, from, to)
+filename_replace(filepath = ".", from, to)
 }
 \arguments{
-\item{files}{List of files. Defaults to files.}
+\item{filepath}{Path to files. Defaults to current directory.}
 
 \item{from}{String to find.}
 
@@ -17,7 +17,8 @@ filename_replace(files = files, from, to)
 Replace a string in a filename with another string.
 }
 \examples{
-files <- list.files(path = ".")
-filename_replace(files=files, from="iptg", to="IPTG")
-filename_replace(files=files, from="_something_", to="_")
+folder <- "FCS_trimmed"
+filename_replace(filepath = folder, from="iptg", to="IPTG")
+filename_replace(filepath = folder, from="100ngmlatc", to="100")
+filename_replace(filepath = folder, from="_something_", to="_")
 }

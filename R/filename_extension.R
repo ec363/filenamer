@@ -7,18 +7,22 @@
 #' following filenames identified as missing an extension/appendix. Designed for
 #' triplicate files in which first file of each group is comprehensively
 #' labelled and the others are not, but should work with any number of
-#' replicates, provided the object 'files' contains them in the correct order.
-#' @param files List of files. Defaults to files.
+#' replicates, provided the filepath contains them in the correct order.
+#'
+#' @param filepath Path to files. Defaults to current directory.
 #' @param length_with_extension Number of parts to the basename of a file WITH an extension after splitting by "_". Defaults to a.
 #' @param length_noextension Number of parts to the basename of a file WITHOUT an extension after splitting by "_". Defaults to b.
 #' @export
 #' @examples
-#' files <- list.files(path = ".")
-#' a <- length( unlist(strsplit(basename(files[1]), "_")) )
-#' b <- length( unlist(strsplit(basename(files[2]), "_")) )
-#' filename_extension(files = files, length_with_extension = a, length_noextension = b)
+#' folder <- "FCS_trimmed"
+#' a <- length( unlist(strsplit(basename(list.files(folder)[1]), "_")) )
+#' b <- length( unlist(strsplit(basename(list.files(folder)[2]), "_")) )
+#' filename_extension(filepath = folder, length_with_extension = a, length_noextension = b)
 
-filename_extension <- function(files = files, length_with_extension = a, length_noextension = b){
+filename_extension <- function(filepath = ".", length_with_extension = a, length_noextension = b){
+
+  files <- list.files(path = filepath, pattern = utils::glob2rx("*.fcs"),
+                      full.names = T, recursive = F, include.dirs = F)
 
   for (file in files) {
 
@@ -73,7 +77,7 @@ filename_extension <- function(files = files, length_with_extension = a, length_
       replicate.with.appendix <- paste(trunc_name, appendix, sep="")
       print(paste("New filename: ", replicate.with.appendix, sep=""))
 
-      file.rename(from = basename(file), to = basename(replicate.with.appendix))
+      file.rename(from = paste0(filepath, "/", basename(file)), to = paste0(filepath, "/", basename(replicate.with.appendix)))
 
       print("...")
 

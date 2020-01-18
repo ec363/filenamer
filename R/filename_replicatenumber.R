@@ -5,13 +5,17 @@
 #' Assumes triplicate data that is ordered: replicate number appended depends
 #' entirely on each file's position in files (1st = _1, 2nd = _2, 3rd = _3, 4th
 #' = _1, and so on).
-#' @param files List of files. Defaults to files.
+#'
+#' @param filepath Path to files. Defaults to current directory.
 #' @export
 #' @examples
-#' files <- list.files(path = ".")
-#' filename_replicatenumber(files=files)
+#' folder <- "FCS_trimmed"
+#' filename_replicatenumber(filepath = folder)
 
-filename_replicatenumber <- function(files = files){
+filename_replicatenumber <- function(filepath = "."){
+
+  files <- list.files(path = filepath, pattern = utils::glob2rx("*.fcs"),
+                      full.names = T, recursive = F, include.dirs = F)
 
   for (file in files) {
 
@@ -29,7 +33,7 @@ filename_replicatenumber <- function(files = files){
       newfilename <- paste(trunc_name, appendix, sep="")
       print(paste("New filename: ", newfilename, sep=""))
 
-      file.rename(from = basename(file), to = basename(newfilename))
+      file.rename(from = paste0(filepath, "/", basename(file)), to = paste0(filepath, "/", basename(newfilename)))
     }
 
     # rep2
@@ -39,7 +43,7 @@ filename_replicatenumber <- function(files = files){
       newfilename <- paste(trunc_name, appendix, sep="")
       print(paste("New filename: ", newfilename, sep=""))
 
-      file.rename(from = basename(file), to = basename(newfilename))
+      file.rename(from = paste0(filepath, "/", basename(file)), to = paste0(filepath, "/", basename(newfilename)))
     }
 
     # rep3
@@ -49,7 +53,7 @@ filename_replicatenumber <- function(files = files){
       newfilename <- paste(trunc_name, appendix, sep="")
       print(paste("New filename: ", newfilename, sep=""))
 
-      file.rename(from = basename(file), to = basename(newfilename))
+      file.rename(from = paste0(filepath, "/", basename(file)), to = paste0(filepath, "/", basename(newfilename)))
     }
 
     print("...")

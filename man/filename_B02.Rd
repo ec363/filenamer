@@ -4,10 +4,12 @@
 \alias{filename_B02}
 \title{filename_B02}
 \usage{
-filename_B02(filepath = ".")
+filename_B02(filepath = ".", verbose = TRUE)
 }
 \arguments{
 \item{filepath}{Path to files. Defaults to current directory.}
+
+\item{verbose}{Logical. Should it print descriptions of any changes?}
 }
 \description{
 Replaces all multiwell plate 'well' labels in the form 'B2' to the

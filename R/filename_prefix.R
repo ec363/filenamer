@@ -4,19 +4,27 @@
 #'
 #' @param filepath Path to files. Defaults to current directory.
 #' @param prefix_n Length of prefix, measured in parts after splitting by "_". Defaults to 3.
+#' @param verbose Logical. Should it print descriptions of any changes?
+#'
 #' @export
 #' @examples
 #' folder <- "FCS_trimmed"
 #' filename_prefix(filepath = folder, prefix_n = 4)
 
-filename_prefix <- function(filepath = ".", prefix_n = 3){
+filename_prefix <- function(filepath = ".", prefix_n = 3, verbose = TRUE){
+
+  # if no prefix exists, do nothing
+  if (prefix_n == 0) {
+    if ( verbose ) { print("No prefix to remove.") }
+    return()
+  }
 
   files <- list.files(path = filepath, pattern = utils::glob2rx("*.fcs"),
                       full.names = T, recursive = F, include.dirs = F)
 
   for ( file in files ) {
 
-    print(paste("Using this file: ", basename(file), sep=""))
+    if ( verbose ) { print(paste("Using this file: ", basename(file), sep="")) }
 
     ## 1. Split it up
     split.old.filename <- unlist(strsplit(basename(file), "_"))
@@ -27,10 +35,10 @@ filename_prefix <- function(filepath = ".", prefix_n = 3){
       stitch.prefix <- paste(stitch.prefix, "_", split.old.filename[part], sep="")
     }
     stitch.prefix <- paste(stitch.prefix, "_", sep="")
-    print(paste("Prefix is: ", stitch.prefix, sep=""))
+    if ( verbose ) { print(paste("Prefix is: ", stitch.prefix, sep="")) }
 
     ## 3. Assemble new file name
-    print(paste("Removing prefix", sep=""))
+    if ( verbose ) { print(paste("Removing prefix", sep="")) }
 
     ## 3A. Selects parts to keep
     lastpart.old <- length(split.old.filename) # count old parts to get # of last part
@@ -45,13 +53,13 @@ filename_prefix <- function(filepath = ".", prefix_n = 3){
     for (parts in parts.new.filename[2:lastpart.new]) { # add parts[2:end]
       stitch.new.filename <- paste(stitch.new.filename, "_", parts, sep="")
     }
-    print(paste("New filename: ", stitch.new.filename, sep=""))
+    if ( verbose ) { print(paste("New filename: ", stitch.new.filename, sep="")) }
 
     ## 4. Rename
     file.rename(from = paste0(filepath, "/", basename(file)), to = paste0(filepath, "/", basename(stitch.new.filename)))
 
     # Spacer
-    print("...")
+    if ( verbose ) { print("...") }
   }
 
 }

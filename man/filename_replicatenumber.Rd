@@ -4,10 +4,12 @@
 \alias{filename_replicatenumber}
 \title{filename_replicatenumber}
 \usage{
-filename_replicatenumber(filepath = ".")
+filename_replicatenumber(filepath = ".", verbose = TRUE)
 }
 \arguments{
 \item{filepath}{Path to files. Defaults to current directory.}
+
+\item{verbose}{Logical. Should it print descriptions of any changes?}
 }
 \description{
 Append index to end of filename (before the filetype extension such as .fcs)

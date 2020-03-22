@@ -5,7 +5,7 @@
 \title{filename_extension}
 \usage{
 filename_extension(filepath = ".", length_with_extension = a,
-  length_noextension = b)
+  length_noextension = b, verbose = TRUE)
 }
 \arguments{
 \item{filepath}{Path to files. Defaults to current directory.}
@@ -13,6 +13,8 @@ filename_extension(filepath = ".", length_with_extension = a,
 \item{length_with_extension}{Number of parts to the basename of a file WITH an extension after splitting by "_". Defaults to a.}
 
 \item{length_noextension}{Number of parts to the basename of a file WITHOUT an extension after splitting by "_". Defaults to b.}
+
+\item{verbose}{Logical. Should it print descriptions of any changes?}
 }
 \description{
 Iterates through the provided list of files (alphabetically). If a filename

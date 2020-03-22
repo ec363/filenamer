@@ -4,12 +4,14 @@
 \alias{filename_prefix}
 \title{filename_prefix}
 \usage{
-filename_prefix(filepath = ".", prefix_n = 3)
+filename_prefix(filepath = ".", prefix_n = 3, verbose = TRUE)
 }
 \arguments{
 \item{filepath}{Path to files. Defaults to current directory.}
 
 \item{prefix_n}{Length of prefix, measured in parts after splitting by "_". Defaults to 3.}
+
+\item{verbose}{Logical. Should it print descriptions of any changes?}
 }
 \description{
 Removes prefixes of specified size in filenames.

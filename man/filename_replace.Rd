@@ -4,7 +4,7 @@
 \alias{filename_replace}
 \title{filename_replace}
 \usage{
-filename_replace(filepath = ".", from, to)
+filename_replace(filepath = ".", from, to, verbose = TRUE)
 }
 \arguments{
 \item{filepath}{Path to files. Defaults to current directory.}
@@ -12,6 +12,8 @@ filename_replace(filepath = ".", from, to)
 \item{from}{String to find.}
 
 \item{to}{String to replace it with.}
+
+\item{verbose}{Logical. Should it print descriptions of any changes?}
 }
 \description{
 Replace a string in a filename with another string.

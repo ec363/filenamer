@@ -7,31 +7,33 @@
 #' = _1, and so on).
 #'
 #' @param filepath Path to files. Defaults to current directory.
+#' @param verbose Logical. Should it print descriptions of any changes?
+#'
 #' @export
 #' @examples
 #' folder <- "FCS_trimmed"
 #' filename_replicatenumber(filepath = folder)
 
-filename_replicatenumber <- function(filepath = "."){
+filename_replicatenumber <- function(filepath = ".", verbose = TRUE){
 
   files <- list.files(path = filepath, pattern = utils::glob2rx("*.fcs"),
                       full.names = T, recursive = F, include.dirs = F)
 
   for (file in files) {
 
-    print(paste("Using this file: ", basename(file), sep=""))
+    if (verbose) { print(paste("Using this file: ", basename(file), sep="")) }
 
     # Find index
     # Which nth element is this?
     index <- which(files == file)[[1]]
-    print(paste("Index of which is: ", index, sep=""))
+    if (verbose) { print(paste("Index of which is: ", index, sep="")) }
 
     # rep1
     if (index%%3 == 1) {
       appendix <- "_1.fcs"
       trunc_name <- (unlist(strsplit(basename(file), ".fcs"))) # splitting by .fcs just cuts it off, don't need [1]
       newfilename <- paste(trunc_name, appendix, sep="")
-      print(paste("New filename: ", newfilename, sep=""))
+      if (verbose) { print(paste("New filename: ", newfilename, sep="")) }
 
       file.rename(from = paste0(filepath, "/", basename(file)), to = paste0(filepath, "/", basename(newfilename)))
     }
@@ -41,7 +43,7 @@ filename_replicatenumber <- function(filepath = "."){
       appendix <- "_2.fcs"
       trunc_name <- (unlist(strsplit(basename(file), ".fcs"))) # splitting by .fcs just cuts it off, don't need [1]
       newfilename <- paste(trunc_name, appendix, sep="")
-      print(paste("New filename: ", newfilename, sep=""))
+      if (verbose) { print(paste("New filename: ", newfilename, sep="")) }
 
       file.rename(from = paste0(filepath, "/", basename(file)), to = paste0(filepath, "/", basename(newfilename)))
     }
@@ -51,12 +53,12 @@ filename_replicatenumber <- function(filepath = "."){
       appendix <- "_3.fcs"
       trunc_name <- (unlist(strsplit(basename(file), ".fcs"))) # splitting by .fcs just cuts it off, don't need [1]
       newfilename <- paste(trunc_name, appendix, sep="")
-      print(paste("New filename: ", newfilename, sep=""))
+      if (verbose) { print(paste("New filename: ", newfilename, sep="")) }
 
       file.rename(from = paste0(filepath, "/", basename(file)), to = paste0(filepath, "/", basename(newfilename)))
     }
 
-    print("...")
+    if (verbose) { print("...") }
 
   }
 
